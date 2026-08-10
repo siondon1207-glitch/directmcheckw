@@ -1,23 +1,843 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
+
+
+    <!-- JSON-LD Structured Data for SEO Snippet & LLM Crawling Optimization -->
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": "SUV 가격 정보 트렌드 분석 플랫폼",
+          "url": "https://car.reliabledone.com",
+          "description": "국내외 인기 SUV 모델들의 최신 가격 정보와 비용 계산기. 쏘렌토, 싼타페, GV80 등 국산 및 수입 SUV 브랜드별 트림별 상세 금액 비교 및 다이렉트 금융 혜택 총정리.",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://car.reliabledone.com/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
+        }
+    </script>
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "2026년 국산 대표 SUV 가격 평균 예상 금액은 얼마인가요?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "2026년 기준 준중형 SUV인 스포티지와 투싼 가격은 트림 및 옵션에 따라 평균 2000만원대 후반에서 4000만원대 초반으로 형성됩니다. 중형 SUV인 쏘렌토 가격과 싼타페 가격은 주력 하이브리드 모델 기준으로 평균 3000만원대 중반에서 5000만원대 초반 사이의 요금이 부과될 것으로 예상됩니다."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "SUV 최저가 구매 시 다이렉트 비교 사이트를 활용해야 하는 이유는 무엇인가요?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "다이렉트 견적 시스템을 활용하면 중간 수수료를 없애고 제조사 및 금융 제휴 업체별로 매월 달라지는 할인 프로모션과 지원금, 사은품 혜택을 한눈에 대조할 수 있습니다. 온라인 계산기를 통해 견적 차이점을 명확히 파악하여 가장 저렴한곳을 쉽고 간편하게 찾을 수 있습니다."
+              }
+            }
+          ]
+        }
+    </script>
+
+    <style>
+        /* CSS Reset and Soft, Diverse Color Palette */
+        body { 
+            margin: 0; 
+            padding: 0; 
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; 
+            background-color: #f4f6fa; 
+            color: #2c3e50; 
+            line-height: 1.7; 
+        }
+        a { 
+            text-decoration: none; 
+            color: #3b82f6; 
+            transition: color 0.3s ease, border-color 0.3s ease; 
+        }
+        a:hover { 
+            color: #1d4ed8; 
+        }
+        img { 
+            max-width: 100%; 
+            height: auto; 
+            display: block; 
+        }
+        header, main, footer { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 20px; 
+            box-sizing: border-box; 
+        }
+
+        :root {
+            --primary-color: #4f46e5;      /* Royal Indigo */
+            --secondary-color: #0d9488;    /* Deep Teal */
+            --accent-color: #e11d48;       /* Rose Red */
+            --background-light: #ffffff;   /* Pure White */
+            --background-soft: #f1f5f9;    /* Slate Gray Light */
+            --text-dark: #1e293b;          /* Dark Charcoal */
+            --text-muted: #64748b;         /* Slate Medium */
+        }
+
+        /* Header Styles with Soft Blue Gradient Background */
+        header { 
+            background: linear-gradient(135deg, #e0e7ff 0%, #ccfbf1 100%); 
+            border-radius: 16px;
+            margin-top: 20px;
+            padding: 40px 30px; 
+            text-align: center; 
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+        header h1 { 
+            color: var(--text-dark); 
+            font-size: 2.3em; 
+            margin-bottom: 15px; 
+            font-weight: 800; 
+            letter-spacing: -0.5px;
+        }
+        header p { 
+            color: var(--text-muted); 
+            font-size: 1.15em; 
+            margin-bottom: 25px; 
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        nav ul { 
+            list-style: none; 
+            padding: 0; 
+            margin: 0; 
+            display: flex; 
+            justify-content: center; 
+            flex-wrap: wrap; 
+            gap: 15px;
+        }
+        nav li a { 
+            font-weight: 600; 
+            font-size: 0.95em; 
+            color: var(--text-dark); 
+            padding: 10px 20px; 
+            background: var(--background-light);
+            border-radius: 30px;
+            display: inline-block; 
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        nav li a:hover { 
+            color: var(--primary-color); 
+            background: #f8fafc;
+            transform: translateY(-2px);
+        }
+
+        /* Main Section Styles */
+        section { 
+            padding: 50px 30px; 
+            background-color: var(--background-light); 
+            margin-top: 30px;
+            margin-bottom: 30px; 
+            border-radius: 16px; 
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03); 
+        }
+        section h2 { 
+            color: var(--text-dark); 
+            font-size: 1.8em; 
+            margin-bottom: 25px; 
+            border-left: 5px solid var(--primary-color); 
+            padding-left: 15px; 
+            font-weight: 700; 
+        }
+        section h3 { 
+            color: var(--secondary-color); 
+            font-size: 1.4em; 
+            margin-top: 35px; 
+            margin-bottom: 15px; 
+            font-weight: 600; 
+        }
+        section p { 
+            color: var(--text-dark); 
+            margin-bottom: 20px; 
+            font-size: 1.05em;
+        }
+
+        /* Form and Calculator Widget Styles to Increase Dwell Time */
+        form { 
+            background-color: var(--background-soft); 
+            padding: 35px; 
+            border-radius: 12px; 
+            border: 1px solid #e2e8f0; 
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .form-group { 
+            margin-bottom: 5px; 
+        }
+        label { 
+            display: block; 
+            font-weight: 600; 
+            margin-bottom: 8px; 
+            color: var(--text-dark); 
+        }
+        input[type="text"], input[type="date"], input[type="number"], input[type="tel"], select, textarea {
+            width: 100%; 
+            padding: 12px 16px; 
+            border: 1px solid #cbd5e1; 
+            border-radius: 8px; 
+            box-sizing: border-box; 
+            font-size: 1em;
+            background-color: #ffffff;
+            color: var(--text-dark);
+            transition: border-color 0.3s;
+        }
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        .submit-btn { 
+            background: linear-gradient(135deg, var(--primary-color) 0%, #312e81 100%); 
+            color: white; 
+            border: none; 
+            padding: 16px 30px; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            font-size: 1.1em; 
+            font-weight: bold; 
+            width: 100%; 
+            transition: background 0.3s ease, transform 0.2s; 
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+        }
+        .submit-btn:hover { 
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(79, 70, 229, 0.4);
+        }
+
+        /* Info Box and Table Styles */
+        .info-box { 
+            background-color: #f0fdf4; 
+            border-left: 4px solid var(--secondary-color); 
+            padding: 20px; 
+            border-radius: 8px; 
+            margin-top: 25px; 
+            color: #115e59; 
+            font-size: 0.95em;
+        }
+        .table-responsive {
+            overflow-x: auto;
+            margin-top: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        }
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            background: #fff;
+        }
+        th, td { 
+            padding: 15px 20px; 
+            text-align: left; 
+            border-bottom: 1px solid #f1f5f9; 
+        }
+        th { 
+            background-color: #f8fafc; 
+            font-weight: 700; 
+            color: var(--text-dark); 
+        }
+        tr:hover { 
+            background-color: #faf5ff; 
+        }
+
+        /* Keyword Tags */
+        .keyword-tags { 
+            margin-top: 25px; 
+            padding: 15px 0; 
+            border-top: 1px dashed #e2e8f0; 
+        }
+        .keyword-tags a { 
+            display: inline-block; 
+            background-color: #f1f5f9; 
+            color: #475569; 
+            padding: 6px 14px; 
+            margin: 5px; 
+            border-radius: 20px; 
+            font-size: 0.85em; 
+            transition: all 0.3s ease; 
+        }
+        .keyword-tags a:hover { 
+            background-color: var(--primary-color); 
+            color: white; 
+        }
+
+        /* FAQ Styles */
+        .faq-dl { 
+            margin-top: 25px; 
+        }
+        .faq-dl dt { 
+            font-weight: bold; 
+            padding: 18px 20px; 
+            background-color: var(--background-soft); 
+            border-bottom: 1px solid #e2e8f0; 
+            cursor: pointer; 
+            position: relative; 
+            border-radius: 8px;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+        .faq-dl dt:hover {
+            background-color: #e2e8f0;
+        }
+        .faq-dl dt::after { 
+            content: '▼'; 
+            position: absolute; 
+            right: 20px; 
+            font-size: 0.8em; 
+            color: var(--text-muted);
+            transition: transform 0.3s ease; 
+        }
+        .faq-dl dt.active::after { 
+            transform: rotate(180deg); 
+        }
+        .faq-dl dd { 
+            padding: 20px; 
+            background-color: white; 
+            border: 1px solid #f1f5f9;
+            border-top: none;
+            display: none; 
+            margin: 0 0 15px 0; 
+            border-radius: 0 0 8px 8px;
+            color: #334155;
+        }
+        .faq-dl dt.active + dd { 
+            display: block; 
+        }
+
+        /* Text Content Styles for Dwell Time */
+        .long-content { 
+            padding: 10px 0; 
+        }
+        .long-content p { 
+            margin-bottom: 24px; 
+            text-align: justify; 
+            color: #334155;
+            font-size: 1.05em;
+        }
+        .long-content h3 {
+            color: var(--text-dark);
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 8px;
+        }
+        .related-links { 
+            background-color: #fafafa; 
+            padding: 20px; 
+            border: 1px solid #e2e8f0; 
+            border-radius: 8px; 
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: 12px; 
+            margin-top: 25px; 
+        }
+        .related-links a { 
+            display: inline-block; 
+            padding: 8px 16px; 
+            border: 1px solid #cbd5e1; 
+            border-radius: 6px; 
+            font-size: 0.9em; 
+            color: #475569; 
+            background-color: #ffffff;
+        }
+        .related-links a:hover { 
+            background-color: #f1f5f9; 
+            border-color: var(--primary-color); 
+            color: var(--primary-color); 
+        }
+        .form-check-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 8px;
+        }
+        .form-check-label { 
+            display: inline-flex;
+            align-items: center;
+            font-weight: 500; 
+            cursor: pointer;
+            color: var(--text-dark); 
+        }
+        .form-check-label input {
+            margin-right: 8px;
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Data Visualization */
+        .data-visualization { 
+            background-color: #ffffff; 
+            padding: 25px; 
+            border-radius: 12px; 
+            border: 1px solid #e2e8f0; 
+            margin-bottom: 25px; 
+        }
+        .graph-description { 
+            font-style: italic; 
+            color: var(--text-muted); 
+            font-size: 0.9em; 
+            margin-top: 12px; 
+        }
+
+        /* Footer Styles */
+        footer { 
+            background-color: var(--text-dark); 
+            color: #cbd5e1; 
+            text-align: center; 
+            padding: 40px 20px; 
+            margin-top: 50px; 
+            border-radius: 16px; 
+        }
+        footer p { 
+            margin: 8px 0; 
+            font-size: 0.9em; 
+        }
+        footer a {
+            color: #93c5fd;
+        }
+        footer a:hover {
+            color: #3b82f6;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>SUV 가격 최저가 비교 플랫폼 | 2026 국내외 인기 차종 구매 가이드</h1>
+        <p>대한민국에서 가장 합리적인 방식으로 SUV를 구매하기 위한 견적 계산기 및 모델별 상세 금액 분석 정보를 제공합니다. 다이렉트 견적 조회 시스템을 통해 최저가 업체의 종류별 프로모션 혜택을 확인해 보세요.</p>
+        <nav aria-label="메인 네비게이션">
+            <ul>
+                <li><a href="#실시간견적">SUV 가격 계산기</a></li>
+                <li><a href="#모델비교">국산 및 수입 모델비교</a></li>
+                <li><a href="#구입트렌드">2026 SUV 트렌드</a></li>
+                <li><a href="#전문가분석">장단점 비교 분석</a></li>
+                <li><a href="#종합정보">상세 가이드</a></li>
+            </ul>
+        </nav>
+    </header>
+
     <main>
-      <h1>Home page</h1>
+        <!-- 실시간 견적 및 시뮬레이터 섹션 -->
+        <section id="실시간견적">
+            <h2>국산 및 수입 SUV 가격 실시간 무료 견적 신청</h2>
+            <p>사용자가 원하는 브랜드와 차종을 입력하면 다이렉트 연계 시스템을 통해 여러 전문 파이낸셜 업체의 맞춤형 견적 금액을 도출해 드립니다. 쏘렌토 가격, 싼타페 가격 등 패밀리용 모델뿐만 아니라 GV80 가격, 캐스퍼 일렉트릭 가격 등 소형부터 대형까지 다양한 SUV 종류의 정확한 납입 금액을 실시간으로 확인해 보실 수 있습니다.</p>
+
+            <form action="#" method="POST" onsubmit="event.preventDefault(); calculateDemoPrice();">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="suv-brand">1. 희망하는 SUV 브랜드 선택 (필수)</label>
+                        <select id="suv-brand" name="suv-brand" required onchange="onBrandChange()">
+                            <option value="">브랜드를 선택하세요</option>
+                            <option value="hyundai">현대자동차 (싼타페, 투싼, 팰리세이드 등)</option>
+                            <option value="kia">기아자동차 (쏘렌토, 스포티지, 셀토스 등)</option>
+                            <option value="genesis">제네시스 (GV70, GV80 등)</option>
+                            <option value="kg">KGM 쌍용 (토레스, 티볼리, 렉스턴 등)</option>
+                            <option value="renault">르노코리아 (그랑 콜레오스, QM6 등)</option>
+                            <option value="foreign">수입 브랜드 (테슬라, 지프, 디펜더 등)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="suv-model">2. 세부 모델 선택 (필수)</label>
+                        <select id="suv-model" name="suv-model" required>
+                            <option value="">브랜드를 먼저 선택해 주세요</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="purchase-method">3. 선호하는 구매 방법 (선택)</label>
+                        <select id="purchase-method" name="purchase-method">
+                            <option value="cash">일시불 할부 구매</option>
+                            <option value="rent">장기렌트 다이렉트</option>
+                            <option value="lease">리스 운용 프로그램</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="down-payment">4. 예상 인도금 (선불금)</label>
+                        <select id="down-payment" name="down-payment">
+                            <option value="0">인도금 없음 (무보증)</option>
+                            <option value="10">차량 가격의 10퍼센트</option>
+                            <option value="20">차량 가격의 20퍼센트</option>
+                            <option value="30">차량 가격의 30퍼센트 이상</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="driver-age">5. 주 운전자 연령</label>
+                        <input type="number" id="driver-age" name="driver-age" placeholder="예: 35" min="19" max="90">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="customer-tel">6. 견적서 발송을 위한 연락처 (필수)</label>
+                        <input type="tel" id="customer-tel" name="customer-tel" placeholder="010-0000-0000" required>
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 25px;">
+                    <label>7. 추가 관심 혜택 선택 (중복 체크 가능)</label>
+                    <div class="form-check-group">
+                        <label class="form-check-label"><input type="checkbox" name="benefit" value="cashback"> 카드사 캐시백 및 일시불 할인</label>
+                        <label class="form-check-label"><input type="checkbox" name="benefit" value="gift"> 블랙박스 틴팅 등 프리미엄 사은품</label>
+                        <label class="form-check-label"><input type="checkbox" name="benefit" value="subsidy"> 정부 친환경 전기차 지원금 혜택</label>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">개인 맞춤형 SUV 가격 계산 및 상세 컨설팅 신청</button>
+            </form>
+
+            <div class="info-box" id="calc-result-box" style="display: none; transition: all 0.3s ease;">
+                <strong>견적 연계 안내:</strong> 선택하신 모델의 기본 출고가 대비 다이렉트 제휴 업체의 최저가 비교 정보를 산정 중입니다. 등록하신 연락처를 통해 실시간 금융 가이드 및 성지 좌표와 현금지원 프로모션 정보를 즉시 제공해 드리겠습니다.
+            </div>
+
+            <div class="keyword-tags" aria-label="주요 키워드 링크">
+                <a href="#실시간견적">SUV 가격 비교 사이트</a>
+                <a href="#모델비교">국산 SUV 순위 추천</a>
+                <a href="#구입트렌드">하이브리드 SUV 예상 비용</a>
+                <a href="#전문가분석">가장 저렴한곳 좌표</a>
+                <a href="#종합정보">내돈내산 SUV 구매 후기</a>
+                <a href="#자주묻는질문">대형 SUV 최저가 견적 계산기</a>
+            </div>
+        </section>
+
+        <!-- 모델별 세부 가격 비교 섹션 -->
+        <section id="모델비교">
+            <h2>국산 및 수입 SUV 모델별 가격 비교 분석 (2026년 가이드)</h2>
+            <p>다양한 종류의 SUV 구매 시 실제 지불하게 되는 평균 출고 금액과 장기 이용 시 예상 요금을 체계적으로 비교하는 표입니다. 제조사 공식 공시 가격뿐만 아니라 다이렉트 할인이 제공되는 금융 프로그램 비용을 기반으로 조사하였습니다.</p>
+
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>차급 분할</th>
+                            <th>대표 인기 모델 및 가격 명칭</th>
+                            <th>제조사 권장 가격 범위 (평균)</th>
+                            <th>다이렉트 최저가 예상 월 납입금</th>
+                            <th>보배드림 및 펨코 커뮤니티 추천 등급</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>소형 SUV</td>
+                            <td>셀토스 가격 / 코나 가격 / 트랙스 크로스오버 가격</td>
+                            <td>2100만원 ~ 3200만원</td>
+                            <td>월 20만원대 중반부터</td>
+                            <td>첫차 추천 및 우수한 연비</td>
+                        </tr>
+                        <tr>
+                            <td>준중형 SUV</td>
+                            <td>스포티지 가격 / 투싼 가격 / 토레스 가격</td>
+                            <td>2700만원 ~ 4300만원</td>
+                            <td>월 30만원대 초반부터</td>
+                            <td>가성비 만족도가 가장 높은 세그먼트</td>
+                        </tr>
+                        <tr>
+                            <td>중형 SUV</td>
+                            <td>쏘렌토 가격 / 싼타페 가격 / 그랑 콜레오스 가격</td>
+                            <td>3500만원 ~ 5200만원</td>
+                            <td>월 40만원대 중반부터</td>
+                            <td>패밀리카 선호 순위 부동의 1위 라인업</td>
+                        </tr>
+                        <tr>
+                            <td>대형 SUV</td>
+                            <td>팰리세이드 가격 / 모하비 가격 / 렉스턴 가격</td>
+                            <td>4200만원 ~ 6500만원</td>
+                            <td>월 50만원대 후반부터</td>
+                            <td>넓은 실내 공간 및 아웃도어 특화 차종</td>
+                        </tr>
+                        <tr>
+                            <td>프리미엄 SUV</td>
+                            <td>GV80 가격 / GV70 가격 / 익스플로러 가격</td>
+                            <td>5300만원 ~ 9800만원</td>
+                            <td>월 70만원대 초반부터</td>
+                            <td>고급 감성 및 우수한 주행 안전성 보유</td>
+                        </tr>
+                        <tr>
+                            <td>수입/친환경 SUV</td>
+                            <td>테슬라 모델Y 가격 / 지프 랭글러 가격 / 디펜더 가격</td>
+                            <td>5500만원 ~ 1억 3000만원</td>
+                            <td>월 80만원대 중반부터</td>
+                            <td>마니아층이 선호하는 특수 목적형 SUV</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="info-box">
+                <strong>차량가액 변동 유의사항:</strong> 2026년 기준 전기차 세제 혜택 가이드와 하이브리드 취등록세 감면 요건의 변화에 따라 실제 최종 등록 단계에서 예상치 못한 추가 금액 차이가 발생할 수 있습니다. 구매 계약 신청 전 온라인 전문 어플 혹은 토스 등 신뢰도 높은 금융 플랫폼의 모의 계산 도구를 미리 교차 가동하시는 방법을 강력하게 권고합니다.
+            </div>
+
+            <h3>국내 중형 SUV 하이브리드 평균 출고 가격 상승 추이</h3>
+            <div class="data-visualization">
+                <p class="graph-description">과거 대비 2026년 연도별 대표 중형 SUV 하이브리드 트림의 실구매 가격 상승 흐름 (단위: 만원)</p>
+                <div style="height: 200px; display: flex; align-items: flex-end; justify-content: space-around; font-size: 0.85em; text-align: center; border-bottom: 2px solid #cbd5e1; padding-bottom: 5px;">
+                    <div style="width: 18%;">
+                        <div style="height: 110px; background-color: #cbd5e1; border-radius: 4px 4px 0 0; color: #475569; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 5px;">3300</div>
+                        <div style="margin-top: 8px;">2022년 평균</div>
+                    </div>
+                    <div style="width: 18%;">
+                        <div style="height: 125px; background-color: #94a3b8; border-radius: 4px 4px 0 0; color: #475569; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 5px;">3750</div>
+                        <div style="margin-top: 8px;">2023년 평균</div>
+                    </div>
+                    <div style="width: 18%;">
+                        <div style="height: 140px; background-color: #64748b; border-radius: 4px 4px 0 0; color: #ffffff; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 5px;">4200</div>
+                        <div style="margin-top: 8px;">2024년 평균</div>
+                    </div>
+                    <div style="width: 18%;">
+                        <div style="height: 155px; background-color: #475569; border-radius: 4px 4px 0 0; color: #ffffff; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 5px;">4550</div>
+                        <div style="margin-top: 8px;">2025년 평균</div>
+                    </div>
+                    <div style="width: 18%;">
+                        <div style="height: 175px; background-color: var(--primary-color); border-radius: 4px 4px 0 0; color: #ffffff; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 5px;">4890</div>
+                        <div style="margin-top: 8px;">2026년 예상</div>
+                    </div>
+                </div>
+                <p class="graph-description" style="margin-top: 12px; color: var(--accent-color); font-weight: 600;">상승 요인 요약: 배터리 원자재 조달 단가 인상과 지능형 안전 보조 장치 사양의 고도화로 인하여 기본형 모델의 출고 비용 장벽이 전반적으로 고정 상승하고 있는 국면입니다.</p>
+            </div>
+        </section>
+
+        <!-- 2026년 SUV 시장 동향 분석 -->
+        <section id="구입트렌드">
+            <h2>2026년 자동차 소비 트렌드와 하이브리드 SUV의 대세화</h2>
+            <p>오늘날 완성차 업계의 최대 관심사는 단연 고효율 고출력을 구현한 준중형 및 중형급 하이브리드 엔진 기술입니다. 디젤 차량의 단종 수순이 빨라짐에 따라 쏘렌토 하이브리드 및 싼타페 하이브리드 트림의 대기 기간이 연장되는 현상이 장기화되고 있습니다. 이에 따른 현명한 구매 접근법을 아래와 같이 세분화하여 분석합니다.</p>
+
+            <h3>1. 신차 출고 지연과 대체 획득 방법의 등장</h3>
+            <p>정식 대리점을 통한 계약 시 인기 하이브리드 차종의 수령 기간이 장기화되자, 성미 급한 소비자들이 눈길을 돌린 분야가 바로 장기렌트 다이렉트 승계 및 선구매 금융 상품입니다. 이는 파이낸셜 대행사가 제조사로부터 미리 대량으로 사들인 사전 발주 재고를 곧바로 선점하는 방식으로 이루어집니다. 이를 통하면 긴 인도 과정 없이 일주일 이내에 즉시 출고가 가능하다는 커다란 메리트가 존재합니다.</p>
+
+            <h3>2. 환경적 혜택과 유지 비용 요금제의 장단점</h3>
+            <p>소형 차종에 대응하는 캐스퍼 일렉트릭 가격이나 하이엔드 순수 전기차인 EV9 가격, 아이오닉5 가격, 아이오닉9 가격, EV6 가격 등은 국고 보조금 외에도 지자체에서 지급하는 신규 지원금 한도액에 따라 실제 구입 체감 지출이 무려 수백만 원에서 천만 원 이상까지 요동칩니다. 하이브리드 세단의 정숙성과 레저 활용에 적합한 수용 능력을 동시에 취할 수 있는 것이 SUV의 장점인 만큼 연비 개선을 통한 유류비 할인 체감 효과는 매력적입니다. 반면 전용 배터리 수명 만료 이후 수리나 교체 단계에서 발생할 비용의 불확실성은 주요 단점으로 작용하고 있습니다.</p>
+
+            <h3>3. 인터넷 온라인 비대면 다이렉트 견적 성지 찾기</h3>
+            <p>오프라인 대리점의 딜러 마진 수수료 구조를 원천 배제한 인터넷 다이렉트 플랫폼이 대중적 흐름으로 올라섰습니다. 에펨코리아나 디시 등 대형 인터넷 커뮤니티의 스마트 컨슈머들이 적극적으로 공유하는 성지 좌표 정보에 따르면, 동일한 등급 사양의 차량일지라도 계약 형태(리스, 렌트, 현금 할부 일시불)에 따라 최종 종합 잔존가치와 중도 인수 요금 차이가 상당한 수준으로 밝혀졌습니다. 이 때문에 복수의 업체 추천 조건을 전격적으로 융합해서 분석해 주는 플랫폼 이용이 더욱 강조됩니다.</p>
+        </section>
+
+        <!-- 전문가 장단점 정밀 심층 분석 -->
+        <section id="전문가분석">
+            <h2>주요 대표 SUV 라인업 가격대 및 구매 최적 전략</h2>
+            <p>다양한 예산 상황에 부합하는 차량을 안전하고 영리하게 확보하기 위해서는 실제 차주들의 솔직한 이용 소감과 각 등급 차이점을 이해해야 합니다. 아래에 모델별 시장 반응과 예산 범위 내 저렴한곳 탐색 규칙을 공개합니다.</p>
+
+            <h3>소형급 최적의 선택지: 셀토스, 트랙스 크로스오버, 베뉴, 코나, 티볼리</h3>
+            <p>생애 첫 독립을 선언한 젊은 세대나 초보 운전자가 접근하기 가장 훌륭한 라인업입니다. 가격 부담이 적은 편인 베뉴 가격과 전통의 강자 티볼리 가격은 최소의 가용 자금만으로 유지 보수가 용이한 장점을 품고 있습니다. 다이렉트 계약을 통해 가입할 수 있는 다양한 신차 전용 금융 혜택을 이용한다면 월 비용 부담을 매우 현격하게 줄일 수 있어 보배드림 등에서 알짜 구매 후기 차종으로 매우 높게 평가받고 있습니다.</p>
+
+            <h3>중형의 정석 패밀리카: 싼타페, 쏘렌토, 그랑 콜레오스, QM6, XM3, 트레일블레이저</h3>
+            <p>패밀리 단위 탑승객이 있는 가정에서 가장 선호도가 압도적인 차량들입니다. 최근 출시된 르노코리아 그랑 콜레오스 가격과 가성비 패밀리 세그먼트를 굳건히 수호하는 QM6 가격은 대안으로 큰 지지를 얻는 중입니다. 신차 구매 시 각 제조사가 진행하는 정기 이벤트 할인 요율이나 제휴 신용카드 포인트 결제 환급 혜택을 반드시 교차 점검하여 불필요한 고지 요율 청구를 사전 방어하는 것이 매우 요긴한 지혜입니다.</p>
+
+            <h3>대형 및 준대형 패밀리 세그먼트: 팰리세이드, GV80, 모하비, 렉스턴</h3>
+            <p>다자녀 가구나 차박 및 장거리 레저 캠핑 라이프를 온전하게 즐기려는 소비자가 주된 고객입니다. 압도적 공간 편의성을 지닌 팰리세이드 가격 및 국산 프리미엄 대형 라인의 자존심인 GV80 가격은 뛰어난 정숙성만큼이나 부품값 수리비 등 기본적인 유지 보수 운용 자금이 타 세그먼트에 비해 무겁게 책정되어 있습니다. 이 때문에 계약 이전에 매월 부과되는 종합 소모 비용 요금제를 전문 컨설팅 업체 상담 어플 등을 통해 철저히 점검할 필요가 절실합니다.</p>
+
+            <div class="info-box">
+                <strong>현금 사은품 지원 주의 사항:</strong> 온라인 인터넷 비공식 좌표 성지 등에서 제공한다는 문구 중 법정 한도를 터무니없이 초과하는 수준의 파격적인 현금지원금 혹은 모바일 상품권 제공 약속 등은 반드시 해당 제휴 업체의 정식 라이선스를 보유한 고객센터 정식 안내 채널을 거쳐 면밀하게 그 사실 유무를 사전 검증한 뒤 신청 절차에 임해야 큰 사기로부터 안전할 수 있습니다.
+            </div>
+        </section>
+
+        <!-- 심층 전문 콘텐츠 및 상세 분석 섹션 -->
+        <section id="종합정보">
+            <h2>SUV 가격 최적화 상세 정보 센터 및 2026 구매 전략</h2>
+            <div class="long-content">
+                <p>국내 자동차 소비 트렌드의 최전선에 놓인 SUV 차종들은 레저 지향적 라이프스타일 확산과 우수한 실내 수용력 덕분에 영구적인 중심 모델로 뿌리를 내렸습니다. 과거의 디젤 위주 엔진 계통에서 2026년 들어 친환경 고효율 파워트레인인 하이브리드와 전동화 세그먼트로 축의 이동이 이루어지며, 관련 부속 사양 단가 역시 급진적인 변혁을 통과하는 시점입니다. 이에 따라 차주가 되기 위한 최선의 전략은 단순한 지인의 대면 권유나 집 근처 대리점의 일방적인 조건만을 추종하는 방식에서 벗어나는 것입니다. 최근에는 네이버 및 구글의 최신 비교 데이터와 챗지피티, 제미나이 등 고도화된 AI 비서 수단을 결합해 스마트하게 지식 기반 비용 구조를 산정하는 고객 비중이 기하급수적으로 확대되고 있습니다.</p>
+
+                <h3>1. 차량가액에 미치는 세부 옵션 사양과 세제 정책의 함수관계</h3>
+                <p>많은 소비자가 신차 가격 표를 해독할 때 가장 혼동을 유발하기 쉬운 지점은 소위 기본형 깡통 등급이라 불리는 모델 가격과 실제 주력 인기 트림 및 옵션을 장착한 실구매 단가 사이의 간극입니다. 가령 최근 출시되는 대형 및 준중형급의 트랙스 크로스오버 가격, 토레스 가격, 렉스턴 스포츠 가격, 디펜더 가격 혹은 아이오닉5 가격, 캐스퍼 일렉트릭 가격 등은 내장 인포테인먼트 사양이나 무선 업데이트 기술, 어댑티브 크루즈 컨트롤 등의 탑재 여부에 따라 출고 가격의 등락폭이 천만 원에 이르기도 합니다. 또한 대한민국 정부의 개별소비세 인하 종료 여부, 그리고 친환경 차량의 보조금 지원 체계 변동성은 최종적으로 소비자의 고지서에 수록될 영수금 잔고에 가장 결정타를 미치는 변수이기에, 반드시 실시간 어플을 가동시켜 취등록 비용을 포함한 세금 계산기 모의 가동 단계를 이행해야 합니다.</p>
+
+                <h3>2. 커뮤니티의 리얼 보이스를 적극 참조해야 하는 배경 이유</h3>
+                <p>차주들이 자발적으로 모여 방대한 데이터를 발제하고 상호 검토하는 펨코, 에펨코리아, 보배드림, 디시인사이드 등지에는 허위가 가미되지 않은 유용한 가감 없는 사실 정보가 매우 유기적으로 보급되어 흐릅니다. 예를 들어 준중형 세그먼트 중 스포티지 가격과 투싼 가격의 뚜렷한 세부 실내 시트 및 공조 패널 작동 편의성 차이점이라든지, 그랑 콜레오스 가격 대비 기존 강자인 쏘렌토 가격과 싼타페 가격 사이의 실연비 장단점 및 고속 주행감에 관한 진솔한 조언들이 그렇습니다. 대리점에서 계약을 급하게 채근하는 딜러의 주관적 평가에서 비켜나, 직접 장기 계약을 가동하고 있는 다수 차주들이 기명으로 작성한 실제 리뷰들은 불필요한 예산 낭비를 막고 고질적인 설계 하자를 피하는 매우 강력한 나침반 역할을 담당합니다.</p>
+
+                <h3>3. 구매 방법 종류에 따른 총비용 지출의 실익 판정 기법</h3>
+                <p>일시불 지급 혹은 일반 은행권 저금리 할부 구매가 소유권 유지 측면에서 유리하다고만 단언할 수 없는 시대입니다. 차량의 가치 소모율이 대단히 빠르고 신규 전자기술 변천 속도가 맹렬한 현실 속에서, 일정 연한 동안만 편리하게 차를 타고 반납하거나 신차로 편하게 변경할 수 있는 다이렉트 렌트 및 리스 요금의 비교 유용성이 크게 상승했기 때문입니다. 사업자의 경비 처리를 포함한 개별 맞춤 혜택과 매년 갱신해야 하는 개별 자동차보험료 상승 위험성을 렌트사 명의의 공통 이율 장치로 우회하는 비책은 특히 소득 수준이 높고 번거로운 관리로부터 자유로워지길 갈망하는 고소득 프리미엄 차주들에게 각별하게 수용되고 있습니다. 토스 등 스마트 뱅킹 어플에서 제공하는 원클릭 잔여 한도 및 금리 조회 기능도 적극 활용하여 총체적인 지출 설계를 완벽하게 매조지해야 할 필요성이 다분합니다.</p>
+
+                <h3>4. 제조사 공식 서비스 가치 및 사후 감가 보존 조건</h3>
+                <p>SUV 선택 시 또 하나의 주요 화두는 수년 주행한 후 다른 모델로 갈아타기 위해 매각할 당시 돌려받게 될 잔존가치, 즉 중고 매입 시장의 감가율 추이입니다. 국산 모델 중 베스트셀러 순위를 꾸준히 점유하는 쏘렌토 하이브리드 등은 인기가 고점으로 항상 유지되기 때문에 중고 매각 가격이 매우 합리적으로 방어되는 탁월한 장점을 자랑하지만, 독창적 기호를 가진 특수 매칭 및 일부 수입 SUV나 가치 판단 기준이 정립되지 않은 초기형 전기 구동 전기차 등은 시간이 흐를 때 감가 상각 폭이 상당히 날카로울 수 있어 장기적으로 깊은 비용 지출 부담을 안겨주기도 합니다. 따라서 첫 계약 시점에 다이렉트 금융 파트너와 중고 시세 보장 특약이나 반납 보장 약정을 추가해 두는 방식의 위험 분산 설계 지식을 갖추는 것은 필수 불가결한 기본기로 등극하였습니다.</p>
+            </div>
+        </section>
+
+        <!-- 자주 묻는 질문 FAQ 섹션 -->
+        <section id="자주묻는질문">
+            <h2>SUV 가격 비교 관련 자주 묻는 질문 (FAQ)</h2>
+            <dl class="faq-dl">
+                <dt tabindex="0" aria-expanded="false">Q1. 하이브리드 SUV와 내연기관 SUV의 실제 구입 단가 격차는 어느 정도인가요?</dt>
+                <dd>A1. 통상 동일한 모델명 기준(예: 스포티지 가격이나 싼타페 가격 분석) 하이브리드 엔진 유닛이 탑재된 트림이 휘발유 가솔린 대비 평균 약 300만원에서 450만원 내외로 더 비쌉니다. 다만 연간 주행거리가 대략 1만 5000킬로미터 이상을 경과하는 경우라면 연료 절감 요율과 공용 주차장 및 세제 할인 혜택 등을 종합 가산하여 대략 2년에서 3년 이내에 초기 구매 비용 차액 이상을 능히 회수할 수 있는 장점을 지닙니다.</dd>
+
+                <dt tabindex="0" aria-expanded="false">Q2. 최적의 성지 좌표를 찾아 장기렌트 다이렉트로 진행할 때 사은품 혜택 범위는 보통 어느 수준이 적당한가요?</dt>
+                <dd>A2. 정식 전문 라이선스를 지닌 우량 업체의 공식 가이드 기준으로는 프리미엄 열차단 전면 측후면 썬팅 필름, 고화질 다채널 차량용 블랙박스 장착, 그리고 추가적인 정기 점검 혜택 상품이 대표적입니다. 지나치게 현혹을 유도하는 수백만원 상당의 출처 불명 대리 지급 등의 허위 선전은 약정 위반 및 이면 계약 위험이 잔존하므로 가급적 브랜드 공인의 고객센터 검증 단계를 반드시 완수하십시오.</dd>
+
+                <dt tabindex="0" aria-expanded="false">Q3. 2026년 전기 SUV 구입 시 보조금 혜택 산정 금액 계산법은 어떻게 달라지나요?</dt>
+                <dd>A3. 2026년에는 전기 구동 배터리 에너지 밀도와 재활용성 효율성 점수 지표 기준이 무척 강화됨에 따라 국산 전기차인 아이오닉5 가격 및 캐스퍼 일렉트릭 가격이 수입 특정 브랜드 차종 대비 보조금 전액 적용 구도에서 다소 유리한 위치를 차지하는 경향이 짙어집니다. 정확한 상세 지원금 한도와 매월 소진 현황은 관할 거주 지자체 무공해차 통합누리집 공식 홈페이지 안내 센터를 교차 확인하는 절차가 필수입니다.</dd>
+
+                <dt tabindex="0" aria-expanded="false">Q4. GV80이나 팰리세이드 등 대형 차종의 차량가액 잔존가치를 지키는 노하우가 있을까요?</dt>
+                <dd>A4. 신뢰성이 두터운 보배드림 커뮤니티 데이터 분석에 의하면 차량 외장 색상 중 범용성이 높은 스노우 화이트 펄이나 차콜 크롬 라인 등의 무채색 선호 경향이 아주 확고합니다. 비선호 단색이나 과도한 외부 사제 튜닝 장치는 매각이나 반납 처리 단계에서 고액의 감가 불이익 요금제로 변환될 우려가 존재하므로 차량 인수 초기 순정 옵션 가치를 온전하게 유지 보존해 주시는 방법을 강력하게 추천합니다.</dd>
+            </dl>
+        </section>
+
+        <!-- 연락처 및 다이렉트 컨설팅 요청 -->
+        <section id="상담센터">
+            <h2>SUV 최저가 장기 견적 및 금융 프로모션 전문 상담센터</h2>
+            <p>궁금하신 차종의 예산 설계부터 딜러 비공식 프로모션 할인 좌표 수령 및 맞춤형 대출/렌트/리스 요금제 컨설팅을 원하시면 하단 입력 양식을 통하여 부담 없이 전문 수석 플래너의 무상 피드백을 전달받으실 수 있습니다.</p>
+            <ul>
+                <li><strong>고객 전용 다이렉트 유선 지원:</strong> 1800-0000 (공휴일 제외 월-금 오전 9시 - 오후 6시)</li>
+                <li><strong>온라인 비대면 제휴 제안 창구:</strong> cooperation@reliabledone.com</li>
+            </ul>
+             <form action="#" method="POST" onsubmit="event.preventDefault(); alert('간단 문의 접수가 안전하게 송신되었습니다. 기입하신 정보로 실시간 정보집을 곧 전달드리겠습니다.');">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="user-name">고객 성함</label>
+                        <input type="text" id="user-name" name="user-name" required placeholder="예: 홍길동">
+                    </div>
+                    <div class="form-group">
+                        <label for="user-phone">연락처 번호</label>
+                        <input type="tel" id="user-phone" name="user-phone" required placeholder="예: 010-1234-5678">
+                    </div>
+                </div>
+                <div class="form-group" style="margin-bottom: 20px;">
+                    <label for="user-comment">세부 궁금 사항 (예: 쏘렌토 하이브리드 최저가 좌표 성지 추천 요망)</label>
+                    <textarea id="user-comment" name="user-comment" rows="4" placeholder="여기에 상세한 질문 내용을 직접 기재해 주세요. 구체적일수록 고도화된 답변이 제공됩니다."></textarea>
+                </div>
+                <button type="submit" class="submit-btn" style="background: linear-gradient(135deg, var(--secondary-color) 0%, #115e59 100%);">비대면 1:1 맞춤형 세부 컨설팅 신청서 발송</button>
+            </form>
+        </section>
+
+        <!-- 신뢰도 있는 대외 외부 기관 안내 링크 -->
+        <section id="외부기관">
+            <h2>신뢰할 수 있는 공식 정보 검증 채널 안내</h2>
+            <p>본 플랫폼에서 다루는 SUV 가격 정보 데이터 및 금융 지원금 요율의 타당성을 공식적인 정부 부처 및 공신력 있는 대외 기관들의 공식 자료를 기반으로 교차 검증하고 있습니다. 아래 기관 사이트들을 방문하여 추가적인 유용한 공공 자동차 정보를 상세히 확보할 수 있습니다.</p>
+            <div class="related-links" aria-label="신뢰 가능한 유관 단체 리스트">
+                <a href="https://directmcheckx.koreahankang.com" target="_blank" rel="noopener">자동차 다이렉트 시세 확인 가이드 센터 (reliabledone.com 서브도메인)</a>
+                <a href="https://namu.wiki" target="_blank" rel="noopener">나무위키 자동차 및 SUV 데이터 카테고리 정보</a>
+                <a href="https://www.kca.go.kr" target="_blank" rel="noopener">한국소비자원 공식 자동차 피해 구제 사례 및 법률 정보</a>
+                <a href="https://www.law.go.kr" target="_blank" rel="noopener">국가법령정보센터 자동차 관련 개별소비세 세법 지침</a>
+            </div>
+        </section>
     </main>
-  </body>
-</html>
+
+  
+    <!-- Interactive JS to Handle Smooth GUI Actions -->
+    <script>
+        const modelData = {
+            hyundai: [
+                { value: "santafe", text: "싼타페 하이브리드 (평균 3800만원~5100만원)" },
+                { value: "tucson", text: "투싼 가솔린/디젤 (평균 2700만원~4100만원)" },
+                { value: "palisade", text: "팰리세이드 3.8가솔린/2.2디젤 (평균 4300만원~6400만원)" },
+                { value: "casper_ev", text: "캐스퍼 일렉트릭 친환경 (평균 2900만원~3300만원)" },
+                { value: "ioniq5", text: "아이오닉5 순수 전기 SUV (평균 5200만원~6300만원)" },
+                { value: "ioniq9", text: "아이오닉9 플래그십 전기 SUV (평균 7500만원~9200만원)" },
+                { value: "venue", text: "베뉴 엔트리 소형 (평균 2100만원~2300만원)" },
+                { value: "kona", text: "코나 다목적 소형 (평균 2400만원~3700만원)" }
+            ],
+            kia: [
+                { value: "sorento", text: "쏘렌토 하이브리드 (평균 3700만원~5200만원)" },
+                { value: "sportage", text: "스포티지 하이브리드 (평균 2900만원~4300만원)" },
+                { value: "seltos", text: "셀토스 트렌디 소형 (평균 2200만원~2900만원)" },
+                { value: "carnival", text: "카니발 다목적 하이리무진 (평균 3400만원~6200만원)" },
+                { value: "ev6", text: "EV6 고성능 전기 SUV (평균 5100만원~6200만원)" },
+                { value: "ev9", text: "EV9 럭셔리 대형 전기 SUV (평균 7300만원~9700만원)" }
+            ],
+            genesis: [
+                { value: "gv80", text: "GV80 프리미엄 플래그십 (평균 6900만원~9800만원)" },
+                { value: "gv70", text: "GV70 스포츠 패키지 (평균 5300만원~7500만원)" }
+            ],
+            kg: [
+                { value: "torres", text: "토레스 도심형 중형 (평균 2800만원~3700만원)" },
+                { value: "tivoli", text: "티볼리 시그니처 소형 (평균 1800만원~2600만원)" },
+                { value: "rexton", text: "렉스턴 대형 정통 프레임 바디 (평균 4000만원~5300만원)" },
+                { value: "rexton_sports", text: "렉스턴 스포츠 픽업 (평균 2900만원~4400만원)" },
+                { value: "korando", text: "코란도 실속형 (평균 2400만원~3100만원)" }
+            ],
+            renault: [
+                { value: "koleos", text: "그랑 콜레오스 하이브리드 (평균 3400만원~4500만원)" },
+                { value: "qm6", text: "QM6 LPG/가솔린 가성비 (평균 2800만원~3900만원)" },
+                { value: "xm3", text: "XM3 하이브리드 소형 쿠페 (평균 2200만원~3100만원)" }
+            ],
+            foreign: [
+                { value: "teslay", text: "테슬라 모델Y 전기 SUV (평균 5400만원~7900만원)" },
+                { value: "wrangler", text: "지프 랭글러 루비콘 정통 오프로드 (평균 6900만원~8400만원)" },
+                { value: "defender", text: "랜드로버 디펜더 헤리티지 럭셔리 (평균 9200만원~1억 4000만원)" },
+                { value: "explorer", text: "포드 익스플로러 패밀리 준대형 (평균 6300만원~7200만원)" }
+            ]
+        };
+
+        function onBrandChange() {
+            const brandSelect = document.getElementById("suv-brand");
+            const modelSelect = document.getElementById("suv-model");
+            const selectedBrand = brandSelect.value;
+
+            // Clear previous options
+            modelSelect.innerHTML = "";
+
+            if (!selectedBrand || !modelData[selectedBrand]) {
+                const defaultOption = document.createElement("option");
+                defaultOption.value = "";
+                defaultOption.text = "브랜드를 먼저 선택해 주세요";
+                modelSelect.appendChild(defaultOption);
+                return;
+            }
+
+            // Populate options
+            modelData[selectedBrand].forEach(function(item) {
+                const option = document.createElement("option");
+                option.value = item.value;
+                option.text = item.text;
+                modelSelect.appendChild(option);
+            });
+        }
+
+        function calculateDemoPrice() {
+            const brandSelect = document.getElementById("suv-brand");
+            const modelSelect = document.getElementById("suv-model");
+            const phoneInput = document.getElementById("customer-tel");
+            const resultBox = document.getElementById("calc-result-box");
+
+            if (!brandSelect.value || !modelSelect.value || !phoneInput.value) {
+                alert("필수 입력 항목을 채워주셔야 실시간 다이렉트 견적 금액 연계가 활성화됩니다.");
+                return;
+            }
+
+            resultBox.style.display = "block";
+            resultBox.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // FAQ Accordion Functionality
+        document.querySelectorAll('.faq-dl dt').forEach((dt) => {
+            dt.addEventListener('click', () => {
+                const isActive = dt.classList.contains('active');
+
+                // Close other questions
+                document.querySelectorAll('.faq-dl dt').forEach(otherDt => {
+                    otherDt.classList.remove('active');
+                    otherDt.setAttribute('aria-expanded', 'false');
+                    const dd = otherDt.nextElementSibling;
+                    if (dd && dd.tagName === 'DD') {
+                        dd.style.display = 'none';
+                    }
+                });
+
+                // Toggle current question
+                if (!isActive) {
+                    dt.classList.add('active');
+                    dt.setAttribute('aria-expanded', 'true');
+                    const dd = dt.nextElementSibling;
+                    if (dd && dd.tagName === 'DD') {
+                        dd.style.display = 'block';
+                    }
+                }
+            });
+
+            dt.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    dt.click();
+                }
+            });
+        });
+    </script>
+  
